@@ -1,4 +1,4 @@
-FROM alpine:3.7 as build
+FROM alpine:3.8 as build
 
 ENV BUNDLE_SILENCE_ROOT_WARNING=1
 
@@ -10,10 +10,10 @@ RUN apk add --no-cache ruby ruby-dev ruby-bundler ruby-json build-base \
  && apk del --no-cache ruby-bundler \
  && rm -rf /usr/lib/ruby/gems/*/cache
 
-FROM alpine:3.7 as prod
+FROM alpine:3.8 as prod
 
 COPY --from=build /usr/lib/ruby/gems /usr/lib/ruby/gems
-RUN apk add --no-cache ruby ruby-json \
+RUN apk add --no-cache ruby ruby-json ruby-etc\
  && ruby -e "Gem::Specification.map.each do |spec| \
       Gem::Installer.for_spec( \
         spec, \
