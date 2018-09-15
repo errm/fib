@@ -13,7 +13,7 @@ RUN apk add --no-cache ruby ruby-dev ruby-bundler ruby-json build-base \
 FROM alpine:3.8 as prod
 
 COPY --from=build /usr/lib/ruby/gems /usr/lib/ruby/gems
-RUN apk add --no-cache ruby ruby-json ruby-etc\
+RUN apk add --no-cache ruby ruby-json ruby-etc apache2-utils \
  && ruby -e "Gem::Specification.map.each do |spec| \
       Gem::Installer.for_spec( \
         spec, \
@@ -35,4 +35,4 @@ ENV PORT=9292 \
 EXPOSE $PORT
 USER nobody
 STOPSIGNAL SIGINT
-ENTRYPOINT ["/usr/bin/puma"]
+CMD ["/usr/bin/puma"]

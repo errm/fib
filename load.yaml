@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fib
+  labels:
+    app: fib
+    component: load
+spec:
+  template:
+    spec:
+      containers:
+      - name: fib-load
+        image: errm/fib
+        command: ["ab",  "-n1000", "-c4", "fib"]

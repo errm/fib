@@ -4,6 +4,7 @@ metadata:
   name: fib
   labels:
     app: fib
+    component: web
 spec:
   selector:
     matchLabels:
