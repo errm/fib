@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: fib
+  name: fib-load
   labels:
     app: fib
     component: load
@@ -12,3 +12,4 @@ spec:
       - name: fib-load
         image: errm/fib
         command: ["ab",  "-n1000", "-c4", "fib/30"]
+      restartPolicy: OnFailure
