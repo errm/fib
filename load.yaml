@@ -11,4 +11,4 @@ spec:
       containers:
       - name: fib-load
         image: errm/fib
-        command: ["ab",  "-n1000", "-c4", "fib"]
+        command: ["ab",  "-n1000", "-c4", "fib/30"]
